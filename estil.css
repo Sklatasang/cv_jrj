@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #f0f0f0;
+}
+
+/* Header */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 100px;
+    font-family: 'Roboto Mono', monospace;
+    background-color: #ffffff;
+}
+
+.top-bar .logo {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.9rem;
+    transition: color 0.3s; /* Smooth color transition */
+}
+
+nav a:hover {
+    color: #007bff; /* Hover effect: blue color */
+}
+
+/* Active link */
+nav a.active {
+    color: #007bff;
+    font-weight: 700;
+    border-bottom: 2px solid #007bff; /* Highlight with underline */
+}
+
+/* Curriculum container */
+.curriculum-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-family: 'Roboto Mono', monospace;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    font-size: 1.8rem;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.content-box {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-box p {
+    font-size: 1rem;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.skills-list, .languages-list {
+    list-style: none;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.skills-list li, .languages-list li {
+    font-size: 1rem;
+    color: #333;
+    padding: 8px 0;
+}
+
+.skills-list {
+    margin-bottom: 20px;
+}
+
+/* Download button */
+.download-button-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.download-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.download-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+

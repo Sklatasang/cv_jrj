@@ -1,0 +1,195 @@
+/* ====== RESET ====== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ====== BODY ====== */
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    background-color: #f0f0f0;
+    overflow-x: hidden; /* evita desplaçament lateral amb zoom */
+}
+
+/* ====== HEADER ====== */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3vh 5vw; /* adaptatiu */
+    font-family: 'Roboto Mono', monospace;
+    background-color: #ffffff;
+    flex-wrap: wrap; /* permet trencar línia amb zoom */
+    gap: 1rem;
+}
+
+.top-bar .logo {
+    font-weight: 700;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+}
+
+nav a {
+    margin: 0 1vw;
+    text-decoration: none;
+    color: #333;
+    font-size: clamp(0.8rem, 1vw, 1rem);
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #0056b3;
+}
+
+nav a.active {
+    color: #007bff;
+    font-weight: 700;
+    border-bottom: 2px solid #007bff;
+}
+
+/* ====== MAIN CONTAINER ====== */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap; /* fa que s'adapti */
+    gap: 6vw;
+    width: 100%;
+    min-height: 100vh;
+    padding: 5vh 5vw;
+    background: linear-gradient(to right, #f0f0f0 39%, #ffffff 39%);
+    transition: all 0.3s ease;
+    
+}
+
+/* ====== PROFILE CARD ====== */
+.profile-card {
+    background-color: #e0e0e0;
+    padding: 2rem;
+    border-radius: 10px;
+    flex: 1 1 300px;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.profile-photo {
+    width: 60%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+.profile-card h2 {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.profile-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* ====== SOCIAL LINKS ====== */
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links a img {
+    width: 25px;
+    height: 25px;
+    margin: 0 8px;
+    transition: transform 0.3s;
+}
+
+.social-links a img:hover {
+    transform: scale(1.15);
+}
+
+/* ====== INTRO TEXT ====== */
+.intro-text {
+    flex: 1 1 350px;
+    max-width: 600px;
+    text-align: left;
+}
+
+.intro-text h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-family: 'Roboto Mono', monospace;
+    color: #000;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    color: #000;
+    margin-bottom: 20px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.button {
+    padding: 10px 25px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.button-cv,
+.button-contacto {
+    background-color: #007bff;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.description {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-top: 20px;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 900px) {
+    .container {
+        background: #f0f0f0;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .intro-text {
+        text-align: center;
+    }
+
+    .top-bar {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 500px) {
+    .profile-photo {
+        width: 70%;
+    }
+
+    .top-bar {
+        padding: 2vh 4vw;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+}
