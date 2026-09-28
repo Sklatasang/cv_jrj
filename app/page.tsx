@@ -2,64 +2,78 @@
 
 import { motion } from "motion/react";
 import { useMemo, useState } from "react";
+import Terminal from "@/components/Terminal";
 
 const skills = [
   "JavaScript",
-  "TypeScript",
+  "XSQL-Script",
   "SQL",
   "Informix",
-  "XSQL-Script",
   "XML",
   "FOP",
   "ERP",
-  "Data modelling",
   "Debugging",
   "Git",
-  "Business logic",
+  "Integrations",
+  "Automation",
+  "TypeScript",
 ];
 
 const cases = [
   {
-    kicker: "ERP · Costs · Business logic",
-    title: "Cost allocation & accounting logic",
-    text: "Anàlisi i correcció de processos de càlcul de costos, signes, repartiments per unitat i fluxos de documents dins d’un ERP empresarial.",
+    kicker: "ERP · COSTOS · LÒGICA",
+    title: "Quan els costos no quadren",
+    text: "He hagut de seguir càlculs, signes i repartiments entre documents fins a trobar per què el resultat final no era el que tocava. És el tipus de problema on entendre el flux val més que començar a canviar codi a cegues.",
     tags: ["SQL", "XSQL-Script", "Informix", "Debugging"],
   },
   {
-    kicker: "Data · Integrations",
-    title: "Cross-document data mapping",
-    text: "Resolució de problemes de mapping entre capçaleres, línies i dossiers, treballant amb joins, referències, graelles analítiques i estructures de dades complexes.",
+    kicker: "DADES · INTEGRACIONS",
+    title: "Quan una dada es perd pel camí",
+    text: "Treballar amb capçaleres, línies, dossiers, joins i referències entre documents m'ha ensenyat que moltes incidències no són un error aïllat: són una cadena que has de reconstruir bé.",
     tags: ["SQL", "ERP", "Data mapping", "Analytical grids"],
   },
   {
-    kicker: "Automation · Internal tooling",
-    title: "Workflow automation",
-    text: "Desenvolupament de lògica per automatitzar processos, reduir operacions manuals i fer més robustos fluxos interns amb validacions i tractament d’errors.",
+    kicker: "PROCESSOS · AUTOMATITZACIÓ",
+    title: "Quan un procés té massa passos",
+    text: "També he treballat en lògica per automatitzar tasques i fer fluxos més robustos: menys feina manual, més validacions i errors una mica menys misteriosos quan alguna cosa falla.",
     tags: ["JavaScript", "XSQL-Script", "Automation", "Business rules"],
   },
 ];
 
 const experience = [
   {
-    period: "Feb. 2025 — Actualitat",
+    period: "FEB. 2025 — ARA",
     role: "Developer & IT Consultant",
     company: "Deister Software",
     detail:
-      "Desenvolupament i consultoria sobre software empresarial. Treball amb lògica de negoci, ERP, dades, integracions, automatització de processos, debugging i resolució d’incidències en entorns reals.",
+      "Vaig entrar mentre estudiava i, des de llavors, he anat tocant software empresarial des de bastants angles: lògica de negoci, ERP, dades, integracions, automatització, reporting i debugging. M'he acostumat sobretot a entrar en problemes que no conec d'entrada i anar-los desfent fins que tenen sentit.",
+    tags: ["ERP", "SQL / Informix", "XSQL-Script", "JavaScript"],
   },
   {
-    period: "2022 — Actualitat",
+    period: "2022 — ARA",
     role: "Grau en Enginyeria Informàtica",
     company: "Universitat de Girona · 4t curs",
     detail:
-      "Formació en enginyeria del software, sistemes, bases de dades, algoritmes i desenvolupament d’aplicacions, combinada amb experiència professional paral·lela.",
+      "La carrera m'ha donat la base d'enginyeria del software, sistemes, bases de dades i algoritmes. Compaginar-la amb la feina m'ha anat bé perquè moltes coses deixen de ser teoria quan després les trobes en un sistema real.",
+    tags: ["Software engineering", "Databases", "Systems"],
   },
 ];
 
-function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
+function SectionTitle({
+  eyebrow,
+  title,
+  note,
+}: {
+  eyebrow: string;
+  title: string;
+  note?: string;
+}) {
   return (
-    <div className="section-title">
-      <span>{eyebrow}</span>
+    <div className="section-heading">
+      <div>
+        <span className="section-index">{eyebrow}</span>
+        {note && <p className="section-note">{note}</p>}
+      </div>
       <h2>{title}</h2>
     </div>
   );
@@ -82,12 +96,18 @@ export default function Home() {
           <a className="brand" href="#top" aria-label="Jordi Roura">
             JR<span>.</span>
           </a>
+
           <div className="nav-links">
             <a href="#experience">Experiència</a>
-            <a href="#work">Treball</a>
+            <a href="#work">Feina</a>
             <a href="#stack">Stack</a>
-            <a href="#contact">Contacte</a>
+            <a href="#terminal">Terminal</a>
           </div>
+
+          <a className="nav-contact" href="#contact">
+            Contacte
+            <span aria-hidden="true">↗</span>
+          </a>
         </nav>
       </header>
 
@@ -98,36 +118,58 @@ export default function Home() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
         >
-          <div className="availability">
-            <span className="availability-dot" />
-            Software Engineer · Girona / Barcelona
+          <div className="status-group">
+            <span className="status-label">
+              <span className="availability-dot" />
+              Ara mateix
+            </span>
+            <span className="status-text">Deister Software + 4t GEINF</span>
           </div>
-          <p className="eyebrow">JORDI ROURA JIMÉNEZ</p>
+
+          <p className="eyebrow">JORDI ROURA · SOFTWARE ENGINEER</p>
+
           <h1>
-            Construeixo software
+            Faig software.
             <br />
-            <span>que resol problemes reals.</span>
+            I m&apos;agrada entendre
+            <br />
+            <span>què passa sota el capó.</span>
           </h1>
+
           <p className="hero-lead">
-            Estudiant de 4t d’Enginyeria Informàtica i desenvolupador a Deister
-            Software. Especialitzat en software empresarial, lògica de negoci,
-            dades, integracions i automatització.
+            Soc en Jordi. Estudio 4t d&apos;Enginyeria Informàtica a la UdG i
+            treballo a Deister Software des de 2025. El que més m&apos;agrada és
+            agafar un problema que al principi no quadra i anar estirant del fil
+            fins que entenc d&apos;on surt.
           </p>
+
           <div className="hero-actions">
-            <a className="button primary" href="#work">Veure què faig</a>
+            <a className="button primary" href="#work">
+              Veure en què he treballat
+            </a>
             <a
               className="button secondary"
               href="https://www.linkedin.com/in/jordi-roura-b3210a280/"
               target="_blank"
               rel="noreferrer"
             >
-              LinkedIn ↗
+              LinkedIn <span aria-hidden="true">↗</span>
             </a>
           </div>
+
           <div className="hero-meta">
-            <div><strong>1+ any</strong><span>experiència professional</span></div>
-            <div><strong>4t GEINF</strong><span>Universitat de Girona</span></div>
-            <div><strong>B2</strong><span>anglès</span></div>
+            <div>
+              <span className="meta-label">FEINA</span>
+              <strong>Deister · des de 2025</strong>
+            </div>
+            <div>
+              <span className="meta-label">ARA</span>
+              <strong>4t de GEINF · UdG</strong>
+            </div>
+            <div>
+              <span className="meta-label">IDIOMES</span>
+              <strong>CAT · ES · EN B2</strong>
+            </div>
           </div>
         </motion.div>
 
@@ -138,25 +180,32 @@ export default function Home() {
           transition={{ duration: 0.65, delay: 0.08 }}
         >
           <div className="portrait-card">
-            <div className="terminal-bar">
-              <span />
-              <span />
-              <span />
+            <div className="window-bar">
+              <div className="window-dots" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </div>
+              <span className="window-title">profile.tsx</span>
+              <span className="window-chip">live</span>
             </div>
+
             <img src="foto.png" alt="Jordi Roura" className="portrait" />
+
             <div className="portrait-caption">
               <div>
-                <span>focus</span>
-                <strong>enterprise software</strong>
+                <span>actualment</span>
+                <strong>Developer · Deister</strong>
               </div>
               <div>
-                <span>current</span>
-                <strong>Deister Software</strong>
+                <span>estudiant</span>
+                <strong>4t GEINF · UdG</strong>
               </div>
             </div>
           </div>
-          <div className="code-float code-a">{"SELECT · DEBUG · BUILD"}</div>
-          <div className="code-float code-b">{"ERP / DATA / LOGIC"}</div>
+
+          <div className="code-float code-a">trace → sql → fix</div>
+          <div className="code-float code-b">learning by debugging</div>
         </motion.div>
       </section>
 
@@ -169,15 +218,28 @@ export default function Home() {
       </section>
 
       <section id="experience" className="section container">
-        <SectionTitle eyebrow="01 · EXPERIÈNCIA" title="Experiència real abans d’acabar la carrera." />
+        <SectionTitle
+          eyebrow="01 · EXPERIÈNCIA"
+          title="La carrera m'ha donat la base. La feina m'ha obligat a fer-la servir."
+          note="Sense barres de skills al 93%. Prefereixo explicar què he fet."
+        />
+
         <div className="timeline">
           {experience.map((item) => (
             <article className="timeline-item" key={item.role}>
               <div className="timeline-period">{item.period}</div>
               <div className="timeline-content">
-                <h3>{item.role}</h3>
-                <p className="company">{item.company}</p>
-                <p>{item.detail}</p>
+                <div className="timeline-heading">
+                  <div>
+                    <h3>{item.role}</h3>
+                    <p className="company">{item.company}</p>
+                  </div>
+                  <span className="timeline-arrow" aria-hidden="true">↘</span>
+                </div>
+                <p className="timeline-detail">{item.detail}</p>
+                <div className="tags timeline-tags">
+                  {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                </div>
               </div>
             </article>
           ))}
@@ -186,9 +248,11 @@ export default function Home() {
 
       <section id="work" className="section container">
         <SectionTitle
-          eyebrow="02 · SELECTED WORK"
-          title="No només tecnologies. Problemes que ja he hagut de resoldre."
+          eyebrow="02 · FEINA"
+          title="Algunes coses que m'he trobat treballant."
+          note="Casos reals explicats sense dades internes ni noms de clients."
         />
+
         <div className="case-grid">
           {cases.map((item, index) => (
             <motion.article
@@ -199,7 +263,10 @@ export default function Home() {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.45, delay: index * 0.06 }}
             >
-              <span className="case-number">0{index + 1}</span>
+              <div className="case-topline">
+                <span className="case-number">0{index + 1}</span>
+                <span className="case-arrow" aria-hidden="true">↗</span>
+              </div>
               <p className="case-kicker">{item.kicker}</p>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -209,31 +276,34 @@ export default function Home() {
             </motion.article>
           ))}
         </div>
-        <p className="privacy-note">
-          Els casos estan descrits de manera anonimitzada per respectar la
-          confidencialitat dels projectes i clients.
-        </p>
       </section>
 
       <section id="stack" className="section container">
-        <SectionTitle eyebrow="03 · STACK" title="Tecnologia que utilitzo per construir i entendre sistemes." />
+        <SectionTitle
+          eyebrow="03 · STACK"
+          title="El que faig servir de veritat."
+          note="Separat entre la feina i aquesta web perquè no sembli que treballo amb tot cada dia."
+        />
+
         <div className="stack-layout">
           <div className="stack-intro">
             <p>
-              Em moc especialment bé quan el problema està entre <strong>codi,
-              dades i negoci</strong>: entendre què està passant, trobar l’origen
-              d’un error i convertir la solució en una implementació fiable.
+              No intento omplir el portfolio amb cinquanta logos. Em sembla més
+              útil poder dir <strong>on</strong> he fet servir cada cosa i
+              <strong> per a què</strong>.
             </p>
           </div>
+
           <div className="stack-grid">
             {[
-              ["Development", "JavaScript · TypeScript · XSQL-Script · XML"],
-              ["Data", "SQL · Informix · data modelling · queries"],
-              ["Enterprise", "ERP · business rules · integrations · reporting"],
-              ["Engineering", "Debugging · Git · automation · problem solving"],
-            ].map(([title, text]) => (
+              ["A la feina", "JavaScript · XSQL-Script · SQL · Informix · XML · FOP"],
+              ["Entorn", "ERP · business rules · integrations · reporting"],
+              ["Dia a dia", "Git · debugging · traces · data mapping · automation"],
+              ["Aquesta web", "Next.js · React · TypeScript · Tailwind · Motion"],
+            ].map(([title, text], index) => (
               <article key={title}>
-                <span>{title}</span>
+                <span className="stack-number">0{index + 1}</span>
+                <strong>{title}</strong>
                 <p>{text}</p>
               </article>
             ))}
@@ -242,25 +312,41 @@ export default function Home() {
       </section>
 
       <section className="section container about">
-        <SectionTitle eyebrow="04 · PERFIL" title="Perfil tècnic amb mentalitat de producte." />
+        <SectionTitle
+          eyebrow="04 · COM TREBALLO"
+          title="Més de seguir el fil que de fer màgia."
+        />
+
         <div className="about-grid">
           <p className="about-big">
-            No m’interessa només “que funcioni”. M’interessa entendre
-            <em> per què</em> funciona, què pot fallar i com fer que sigui més
-            mantenible.
+            Si alguna cosa no quadra, em costa deixar-la estar fins que
+            <em> entenc d&apos;on surt.</em>
           </p>
+
           <div className="about-copy">
             <p>
-              Compagino la universitat amb desenvolupament professional, fet que
-              m’ha obligat a traslladar conceptes acadèmics a sistemes existents,
-              amb dades reals, restriccions, dependències i impacte sobre usuaris.
+              A la feina m&apos;he acostumat a entrar en codi que no he escrit
+              jo, seguir traces, revisar dades i entendre regles de negoci abans
+              de decidir on està realment el problema.
             </p>
             <p>
-              Busco continuar creixent en enginyeria del software, backend,
-              dades, arquitectura i producte, treballant en equips on es valori
-              el criteri tècnic i l’aprenentatge constant.
+              No em considero expert en tot el que surt aquí —ni vull que el
+              portfolio ho sembli—. Prefereixo ensenyar una base sòlida, coses
+              que ja he tocat de veritat i moltes ganes de continuar pujant el
+              nivell.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section id="terminal" className="section terminal-section">
+        <div className="container">
+          <SectionTitle
+            eyebrow="05 · PLAYGROUND"
+            title="Una manera menys avorrida de llegir el CV."
+            note="Sí, funciona. Escriu help i remena."
+          />
+          <Terminal />
         </div>
       </section>
 
@@ -268,12 +354,13 @@ export default function Home() {
         <div className="container contact-inner">
           <div>
             <p className="eyebrow">CONTACTE</p>
-            <h2>Parlem.</h2>
+            <h2>Ens llegim.</h2>
             <p>
-              Obert a projectes, oportunitats i converses sobre software,
-              backend, dades i producte.
+              Per feina, un projecte o perquè t&apos;ha cridat l&apos;atenció
+              alguna cosa del portfolio. Em pots escriure directament.
             </p>
           </div>
+
           <div className="contact-actions">
             <button onClick={copyEmail} className="button primary">
               {copied ? "Email copiat ✓" : "Copiar email"}
@@ -290,7 +377,7 @@ export default function Home() {
 
       <footer className="footer container">
         <span>© {year} Jordi Roura</span>
-        <span>Built with Next.js · React · TypeScript · Tailwind · Motion</span>
+        <span>Fet amb Next.js · React · TypeScript · Tailwind · Motion</span>
       </footer>
     </main>
   );
