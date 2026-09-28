@@ -21,21 +21,39 @@ const skills = [
 
 const cases = [
   {
-    kicker: "ERP · COSTOS · LÒGICA",
-    title: "Quan els costos no quadren",
-    text: "He hagut de seguir càlculs, signes i repartiments entre documents fins a trobar per què el resultat final no era el que tocava. És el tipus de problema on entendre el flux val més que començar a canviar codi a cegues.",
-    tags: ["SQL", "XSQL-Script", "Informix", "Debugging"],
+    kicker: "INTEGRACIONS · APIs",
+    title: "Connectar un ERP amb transportistes",
+    problem:
+      "Integrar serveis externs dins d'un flux ERP sense convertir els errors de xarxa, autenticació o format en un problema per a l'usuari.",
+    contribution:
+      "He treballat amb peticions SOAP/JSON, autenticació, tractament de respostes i errors, i amb la lògica necessària perquè la integració encaixi amb el procés de negoci existent.",
+    tags: ["SOAP", "JSON", "XSQL-Script", "ERP"],
   },
   {
-    kicker: "DADES · INTEGRACIONS",
-    title: "Quan una dada es perd pel camí",
-    text: "Treballar amb capçaleres, línies, dossiers, joins i referències entre documents m'ha ensenyat que moltes incidències no són un error aïllat: són una cadena que has de reconstruir bé.",
-    tags: ["SQL", "ERP", "Data mapping", "Analytical grids"],
+    kicker: "DOCUMENTS · IMPRESSIÓ",
+    title: "De les dades a una etiqueta imprimible",
+    problem:
+      "Transformar dades del sistema en documents i etiquetes que després s'han de generar, llegir i imprimir de manera fiable.",
+    contribution:
+      "Generació de PDFs i etiquetes amb codis Code128, formats configurables i fluxos d'impressió amb CUPS, incloent gestió de fallbacks quan alguna peça del procés falla.",
+    tags: ["FOP", "XML", "Code128", "CUPS"],
+  },
+  {
+    kicker: "ERP · DADES",
+    title: "Seguir una dada fins trobar on es trenca",
+    problem:
+      "Quan el resultat final no quadra, l'error pot estar en un join, una referència, un signe, una línia o una regla aplicada diversos passos abans.",
+    contribution:
+      "Debugging de costos i repartiments, joins entre capçaleres/línies/dossiers, data mapping i revisió de traces fins localitzar l'origen real del problema.",
+    tags: ["SQL", "Informix", "Debugging", "Data mapping"],
   },
   {
     kicker: "PROCESSOS · AUTOMATITZACIÓ",
-    title: "Quan un procés té massa passos",
-    text: "També he treballat en lògica per automatitzar tasques i fer fluxos més robustos: menys feina manual, més validacions i errors una mica menys misteriosos quan alguna cosa falla.",
+    title: "Treure passos manuals del mig",
+    problem:
+      "Alguns fluxos funcionen, però obliguen a repetir massa passos o depenen de massa comprovacions manuals.",
+    contribution:
+      "Implementació de lògica, validacions i automatitzacions per fer processos més consistents i reduir punts de fallada evitables.",
     tags: ["JavaScript", "XSQL-Script", "Automation", "Business rules"],
   },
 ];
@@ -149,11 +167,19 @@ export default function Home() {
             </a>
             <a
               className="button secondary"
+              href="https://github.com/Sklatasang"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+            <a
+              className="text-link"
               href="https://www.linkedin.com/in/jordi-roura-b3210a280/"
               target="_blank"
               rel="noreferrer"
             >
-              LinkedIn <span aria-hidden="true">↗</span>
+              LinkedIn ↗
             </a>
           </div>
 
@@ -269,12 +295,37 @@ export default function Home() {
               </div>
               <p className="case-kicker">{item.kicker}</p>
               <h3>{item.title}</h3>
-              <p>{item.text}</p>
+              <div className="case-story">
+                <div>
+                  <span>EL PROBLEMA</span>
+                  <p>{item.problem}</p>
+                </div>
+                <div>
+                  <span>QUÈ HI HE FET</span>
+                  <p>{item.contribution}</p>
+                </div>
+              </div>
               <div className="tags">
                 {item.tags.map((tag) => <span key={tag}>{tag}</span>)}
               </div>
             </motion.article>
           ))}
+        </div>
+
+        <div className="work-proof">
+          <div>
+            <span className="proof-label">CODI PROFESSIONAL</span>
+            <strong>Privat per confidencialitat.</strong>
+            <p>Per això explico context, problema, contribució i tecnologia sense inventar captures ni exposar informació interna.</p>
+          </div>
+          <div>
+            <span className="proof-label">CODI QUE SÍ POTS VEURE</span>
+            <strong>Aquest portfolio.</strong>
+            <p>Next.js, React, TypeScript, Tailwind i la terminal interactiva estan al meu GitHub.</p>
+            <a href="https://github.com/Sklatasang/cv_jrj" target="_blank" rel="noreferrer">
+              Veure repositori ↗
+            </a>
+          </div>
         </div>
       </section>
 
