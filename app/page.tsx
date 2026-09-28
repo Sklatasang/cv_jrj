@@ -143,7 +143,7 @@ export default function Home() {
               <span />
               <span />
             </div>
-            <img src="/foto.png" alt="Jordi Roura" className="portrait" />
+            <img src="foto.png" alt="Jordi Roura" className="portrait" />
             <div className="portrait-caption">
               <div>
                 <span>focus</span>
